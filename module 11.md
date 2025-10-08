@@ -1,7 +1,9 @@
 
 
 EXP NO:21 C PROGRAM TO CREATE A FUNCTION TO FIND THE GREATEST NUMBER
+
 Aim:
+
 To write a C program to create a function to find the greatest number
 
 Algorithm:
@@ -12,10 +14,36 @@ Algorithm:
 5.	Call the max_of_four function with the input integers and store the result in the greater variable
  
 Program:
-//type your code here
+```
+#include<stdio.h>
+int max_of_four(int a, int b, int c, int d){
+    int max=0;
+    if(a>b && a>c && a>d){
+        return max=a;
+    }else if(b>a && b>c && b>d){
+        return max=b;
+    }else if(c>b && c>a && c>d){
+        return max=c;
+        
+    }else{
+        return max=d;
+    }
+}
+
+int main(){
+    
+    int a,b,c,d;
+    scanf("%d %d %d %d",&a,&b,&c,&d);
+    
+    int res=max_of_four(a,b,c,d);
+    printf("%d",res);
+}
+```
 
 Output:
-//paste your output here
+
+<img width="369" height="341" alt="437740943-85bca63c-1e34-4f55-93d4-74cbf4066d54" src="https://github.com/user-attachments/assets/92b6acb5-9b58-4a22-896d-d3dd59ccb045" />
+
 
 Result:
 Thus, the program  that create a function to find the greatest number is verified successfully.
@@ -23,6 +51,7 @@ Thus, the program  that create a function to find the greatest number is verifie
 
  
 EXP NO:22 C PROGRAM TO PRINT THE MAXIMUM VALUES FOR THE AND, OR AND  XOR COMPARISONS
+
 Aim:
 To write a C program to print the maximum values for the AND, OR and XOR comparisons
 
@@ -36,18 +65,46 @@ Algorithm:
 7.	Call the calculate_the_max function with input values.
  
 Program:
-//type your code here
+```
+#include<stdio.h>
+void max(int n, int k) {
+    int max_and = 0, max_or = 0, max_xor = 0;
+    
+    for (int a = 1; a <= n; a++) {
+        for (int b = a + 1; b <= n; b++) {
+            if ((a & b) < k && (a & b) > max_and) max_and = a & b;
+            if ((a | b) < k && (a | b) > max_or) max_or = a | b;
+            if ((a ^ b) < k && (a ^ b) > max_xor) max_xor = a ^ b;
+        }
+    }
+    
+    printf("%d\n%d\n%d\n", max_and, max_or, max_xor);
+}
+
+int main(){
+    int a,b;
+    scanf("%d %d",&a,&b);
+    max(a,b);
+}
+```
 
 Output:
-//paste your output here
+
+<img width="466" height="380" alt="437741358-5d692100-daba-4194-bf67-d8d40cb47ec6" src="https://github.com/user-attachments/assets/d73aee37-1f26-44b1-8b62-3891243a0531" />
+
+
+
 
 Result:
+
+
 Thus, the program to print the maximum values for the AND, OR and XOR comparisons
 is verified successfully.
 
 
  
 EXP NO:23 C PROGRAM TO WRITE THE LOGIC FOR THE REQUESTS
+
 Aim:
 To write a C program to write the logic for the requests
 
@@ -59,18 +116,68 @@ Algorithm:
 5.	Use a for loop to iterate over the queries.
  
 Program:
-//type your code here
+```
+#include <stdio.h>
+#include <stdlib.h>
 
+int main() {
+    int num_shelves, num_queries;
+    scanf("%d %d", &num_shelves, &num_queries);
+    
+    
+    int** library = (int**)malloc(num_shelves * sizeof(int*));
+    int* book_counts = (int*)calloc(num_shelves, sizeof(int)); 
+    
+    for (int i = 0; i < num_shelves; i++) {
+        library[i] = NULL;
+    }
+    
+    for (int i = 0; i < num_queries; i++) {
+        int query_type;
+        scanf("%d", &query_type);
+        
+        if (query_type == 1) {
+            int shelf, pages;
+            scanf("%d %d", &shelf, &pages);
+            
+            book_counts[shelf]++;
+            library[shelf] = (int*)realloc(library[shelf], book_counts[shelf] * sizeof(int));
+            library[shelf][book_counts[shelf] - 1] = pages;
+        } 
+        else if (query_type == 2) {
+            int shelf, book;
+            scanf("%d %d", &shelf, &book);
+            printf("%d\n", library[shelf][book]);
+        } 
+        else if (query_type == 3) {
+            int shelf;
+            scanf("%d", &shelf);
+            printf("%d\n", book_counts[shelf]);
+        }
+    }
+    for (int i = 0; i < num_shelves; i++) {
+        free(library[i]);
+    }
+    free(library);
+    free(book_counts);
+    
+    return 0;
+}
+```
 Output:
-//paste your output here
+
+<img width="394" height="296" alt="437742238-71489856-38e9-4710-9ced-203cef4e02f7" src="https://github.com/user-attachments/assets/dd59e3c3-a8ca-440f-82e5-a7010ab4a24f" />
+
 
 
 Result:
+
 Thus, the program to write the logic for the requests is verified successfully.
 
 
  
 EXP NO:24 C PROGRAM PRINT THE SUM OF THE INTEGERS IN THE ARRAY.
+
 Aim:
 To write a C program print the sum of the integers in the array.
 
@@ -86,20 +193,44 @@ Algorithm:
 
 
 Program:
-//type your code here
+```
+#include <stdio.h>
+#include <stdlib.h>
+int main()
+{
+    int n, i, sum = 0;
+    int *arr;
+    scanf("%d", &n);
+    arr = (int *)malloc(n * sizeof(int));
+
+    for (i = 0; i < n; i++)
+    {
+        scanf("%d", &arr[i]);
+        sum += arr[i];
+    }
+    printf("%d\n", sum);
+    free(arr);
+
+    return 0;
+}
+```
 
 Output:
-//paste your output here
+
+<img width="548" height="239" alt="437742892-9a1ec144-7c2b-4e38-95b5-942a67be0611" src="https://github.com/user-attachments/assets/c7998d66-39eb-4a82-b12e-f0e1681181f0" />
 
  
 
 
+
 Result:
+
 Thus, the program prints the sum of the integers in the array is verified successfully.
 
 
  
 EXP NO 25: C PROGRAM TO COUNT THE NUMBER OF WORDS IN A      SENTENCE
+
 
 
 
@@ -120,10 +251,36 @@ o	If a character is not a space, it may belong to a word. If it's the first non-
 
 
 Program:
-//type your code here
+```
+#include <stdio.h>
+int main() {
+    char sentence[1000];
+    int i = 0, word_count = 0;
+    int in_word = 0;
 
+    printf("Enter a sentence: ");
+    fgets(sentence, sizeof(sentence), stdin);
+
+    while (sentence[i] != '\0') {
+        if (sentence[i] != ' ' && sentence[i] != '\n' && sentence[i] != '\t') {
+            if (in_word == 0) {
+                word_count++;
+                in_word = 1;
+            }
+        } else {
+            in_word = 0;
+        }
+        i++;
+    }
+
+    printf("Total number of words = %d\n", word_count);
+
+    return 0;
+}
+```
 Output:
-//paste your output here
+
+<img width="945" height="175" alt="438203220-eebfa5d7-e800-498b-a76d-b08545aee75d" src="https://github.com/user-attachments/assets/741098c1-f6e8-4aa6-90a0-c8ef207f4759" />
 
 
 
